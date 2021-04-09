@@ -51,48 +51,43 @@ namespace ModAssistant
 
             VersionText.Text = App.Version;
 
-            if (Utils.IsVoid())
-            {
-                Main.Content = Invalid.Instance;
-                Instance.ModsButton.IsEnabled = false;
-                Instance.OptionsButton.IsEnabled = false;
-                Instance.IntroButton.IsEnabled = false;
-                Instance.AboutButton.IsEnabled = false;
-                Instance.GameVersionsBox.IsEnabled = false;
-                return;
-            }
-
             Themes.LoadThemes();
             Themes.FirstLoad(Properties.Settings.Default.SelectedTheme);
 
             Task.Run(() => LoadVersionsAsync());
 
-            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab))
+            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab)|| Properties.Settings.Default.LastTab == "Intro")
             {
-                Main.Content = Intro.Instance;
+                Properties.Settings.Default.LastTab = "Mods";
             }
-            else
+
+            switch (Properties.Settings.Default.LastTab)
             {
-                switch (Properties.Settings.Default.LastTab)
-                {
-                    case "Intro":
-                        Main.Content = Intro.Instance;
-                        break;
-                    case "Mods":
-                        _ = ShowModsPage();
-                        break;
-                    case "About":
-                        Main.Content = About.Instance;
-                        break;
-                    case "Options":
-                        Main.Content = Options.Instance;
-                        Themes.LoadThemes();
-                        break;
-                    default:
-                        Main.Content = Intro.Instance;
-                        break;
-                }
+                case "Intro":
+                    Main.Content = Intro.Instance;
+                    break;
+                case "Mods":
+                    _ = ShowModsPage();
+                    break;
+                case "About":
+                    Main.Content = About.Instance;
+                    break;
+                case "Options":
+                    Main.Content = Options.Instance;
+                    Themes.LoadThemes();
+                    break;
+                default:
+                    Main.Content = Intro.Instance;
+                    break;
             }
+
+
+            ModsButton.IsEnabled = true;
+            string text = "Enjoy your mods";
+            Utils.SendNotify(text);
+            MainText = text;
+            Properties.Settings.Default.Agreed = true;
+            Properties.Settings.Default.Save();
         }
 
         /* Force the app to shutdown when The main window is closed.
@@ -247,9 +242,7 @@ namespace ModAssistant
 
         private void IntroButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = Intro.Instance;
-            Properties.Settings.Default.LastTab = "Intro";
-            Properties.Settings.Default.Save();
+            Utils.SendNotify("Your don't need this");
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
