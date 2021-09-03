@@ -56,7 +56,7 @@ namespace ModAssistant
 
             Task.Run(() => LoadVersionsAsync());
 
-            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab)|| Properties.Settings.Default.LastTab == "Intro")
+            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab) || Properties.Settings.Default.LastTab == "Intro")
             {
                 Properties.Settings.Default.LastTab = "Mods";
             }
@@ -80,14 +80,6 @@ namespace ModAssistant
                     Main.Content = Intro.Instance;
                     break;
             }
-
-
-            ModsButton.IsEnabled = true;
-            string text = "Enjoy your mods";
-            Utils.SendNotify(text);
-            MainText = text;
-            Properties.Settings.Default.Agreed = true;
-            Properties.Settings.Default.Save();
         }
 
         /* Force the app to shutdown when The main window is closed.
