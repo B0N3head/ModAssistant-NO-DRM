@@ -58,27 +58,29 @@ namespace ModAssistant
 
             if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab) || Properties.Settings.Default.LastTab == "Intro")
             {
-                Properties.Settings.Default.LastTab = "Mods";
+                _ = ShowModsPage();
             }
-
-            switch (Properties.Settings.Default.LastTab)
+            else
             {
-                case "Intro":
-                    Main.Content = Intro.Instance;
-                    break;
-                case "Mods":
-                    _ = ShowModsPage();
-                    break;
-                case "About":
-                    Main.Content = About.Instance;
-                    break;
-                case "Options":
-                    Main.Content = Options.Instance;
-                    Themes.LoadThemes();
-                    break;
-                default:
-                    Main.Content = Intro.Instance;
-                    break;
+                switch (Properties.Settings.Default.LastTab)
+                {
+                    case "Intro":
+                        Main.Content = Intro.Instance;
+                        break;
+                    case "Mods":
+                        _ = ShowModsPage();
+                        break;
+                    case "About":
+                        Main.Content = About.Instance;
+                        break;
+                    case "Options":
+                        Main.Content = Options.Instance;
+                        Themes.LoadThemes();
+                        break;
+                    default:
+                        Main.Content = Intro.Instance;
+                        break;
+                }
             }
         }
 
@@ -234,7 +236,7 @@ namespace ModAssistant
 
         private void IntroButton_Click(object sender, RoutedEventArgs e)
         {
-            Utils.SendNotify("Your don't need this");
+            Utils.SendNotify("You don't need this");
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
