@@ -51,14 +51,20 @@ namespace ModAssistant
 
             VersionText.Text = App.Version;
 
+            Instance.ModsButton.IsEnabled = true;
+            Instance.OptionsButton.IsEnabled = true;
+            Instance.IntroButton.IsEnabled = true;
+            Instance.AboutButton.IsEnabled = true;
+            Instance.GameVersionsBox.IsEnabled = true;
+
             Themes.LoadThemes();
             Themes.FirstLoad(Properties.Settings.Default.SelectedTheme);
 
             Task.Run(() => LoadVersionsAsync());
 
-            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab) || Properties.Settings.Default.LastTab == "Intro")
+            if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab))
             {
-                _ = ShowModsPage();
+                Properties.Settings.Default.LastTab = "Mods";
             }
             else
             {
@@ -82,6 +88,13 @@ namespace ModAssistant
                         break;
                 }
             }
+
+            ModsButton.IsEnabled = true;
+            string text = "Enjoy your mods ;)";
+            Utils.SendNotify(text);
+            MainText = text;
+            Properties.Settings.Default.Agreed = true;
+            Properties.Settings.Default.Save();
         }
 
         /* Force the app to shutdown when The main window is closed.
@@ -236,7 +249,9 @@ namespace ModAssistant
 
         private void IntroButton_Click(object sender, RoutedEventArgs e)
         {
-            Utils.SendNotify("You don't need this");
+            Main.Content = Intro.Instance;
+            Properties.Settings.Default.LastTab = "Intro";
+            Properties.Settings.Default.Save();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)

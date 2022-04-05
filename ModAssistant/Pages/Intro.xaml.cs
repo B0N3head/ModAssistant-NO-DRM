@@ -34,21 +34,11 @@ namespace ModAssistant.Pages
 
         private void Agree_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(MainWindow.GameVersion))
-            {
-                string line1 = (string)FindResource("Intro:VersionDownloadFailed");
-                string line2 = (string)FindResource("Intro:ModsTabDisabled");
+            MainWindow.Instance.ModsButton.IsEnabled = true;
 
-                MessageBox.Show($"{line1}.\n{line2}");
-            }
-            else
-            {
-                MainWindow.Instance.ModsButton.IsEnabled = true;
-
-                string text = (string)FindResource("Intro:ModsTabEnabled");
-                Utils.SendNotify(text);
-                MainWindow.Instance.MainText = text;
-            }
+            string text = (string)FindResource("Intro:ModsTabEnabled");
+            Utils.SendNotify(text);
+            MainWindow.Instance.MainText = text;
             Properties.Settings.Default.Agreed = true;
             Properties.Settings.Default.Save();
         }

@@ -121,6 +121,36 @@
                     </Hyperlink>
                     </TextBlock>
                 </StackPanel>
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink NavigateUri="https://github.com/B0N3head/ModAssistantFixed" RequestNavigate="Hyperlink_RequestNavigate">
+                        B0N3head
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Cracker
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Removed the stupid
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    fucking DRM
+                    </TextBlock>
+                    
+                </StackPanel>
 
                 <StackPanel Margin="10" Orientation="Vertical">
                     <TextBlock
