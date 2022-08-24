@@ -35,10 +35,6 @@ namespace ModAssistant.Pages
         private void Agree_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.ModsButton.IsEnabled = true;
-
-            string text = (string)FindResource("Intro:ModsTabEnabled");
-            Utils.SendNotify(text);
-            MainWindow.Instance.MainText = text;
             Properties.Settings.Default.Agreed = true;
             Properties.Settings.Default.Save();
         }

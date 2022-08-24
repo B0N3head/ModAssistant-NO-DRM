@@ -383,11 +383,6 @@ namespace ModAssistant
             return null;
         }
 
-        public static bool IsVoid()
-        {
-            return false;
-        }
-
         public static byte[] StreamToArray(Stream input)
         {
             byte[] buffer = new byte[16 * 1024];
@@ -432,9 +427,9 @@ namespace ModAssistant
         public static async Task<string> Download(string link, string folder, string output, bool preferContentDisposition = false)
         {
             var resp = await HttpClient.GetAsync(link);
-            var cdFilename = resp.Content.Headers.ContentDisposition.FileName.Trim('"');
+            var cdFilename = resp.Content.Headers.ContentDisposition?.FileName?.Trim('"');
             // Prevent path traversal
-            if (cdFilename.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            if (cdFilename?.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             {
                 cdFilename = null;
             }

@@ -51,11 +51,7 @@ namespace ModAssistant
 
             VersionText.Text = App.Version;
 
-            Instance.ModsButton.IsEnabled = true;
-            Instance.OptionsButton.IsEnabled = true;
-            Instance.IntroButton.IsEnabled = true;
-            Instance.AboutButton.IsEnabled = true;
-            Instance.GameVersionsBox.IsEnabled = true;
+            Utils.SendNotify("Enjoy your mods ;)");
 
             Themes.LoadThemes();
             Themes.FirstLoad(Properties.Settings.Default.SelectedTheme);
@@ -64,7 +60,7 @@ namespace ModAssistant
 
             if (!Properties.Settings.Default.Agreed || string.IsNullOrEmpty(Properties.Settings.Default.LastTab))
             {
-                Properties.Settings.Default.LastTab = "Mods";
+                Main.Content = Intro.Instance;
             }
             else
             {
@@ -88,13 +84,6 @@ namespace ModAssistant
                         break;
                 }
             }
-
-            ModsButton.IsEnabled = true;
-            string text = "Enjoy your mods ;)";
-            Utils.SendNotify(text);
-            MainText = text;
-            Properties.Settings.Default.Agreed = true;
-            Properties.Settings.Default.Save();
         }
 
         /* Force the app to shutdown when The main window is closed.
