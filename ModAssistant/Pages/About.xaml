@@ -96,23 +96,164 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     FontWeight="Bold">
-                    <Hyperlink NavigateUri="https://github.com/B0N3head/ModAssistantFixed" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink NavigateUri="https://umbranox.carrd.co/" RequestNavigate="Hyperlink_RequestNavigate">
+                        Umbranox
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Inspiration
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Creating the Mod Manager
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.patreon.com/scoresaber">
+                        <Run Text="{DynamicResource About:Donate}" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.jackbaron.com/">
+                        lolPants
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Inspiration
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Creating ModSaber
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    The first Mod repository
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    <Hyperlink NavigateUri="https://www.paypal.me/jackbarondev" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource About:Donate}" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.github.com/Caeden117">
+                        Caeden117
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Theme Support
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    <Hyperlink NavigateUri="https://ko-fi.com/Caeden117" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource About:Donate}" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://twitter.com/moarinterz">
+                        Interz
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Logos and icon design
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    <Hyperlink NavigateUri="https://streamlabs.com/lnterz/tip" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource About:Donate}" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://twitter.com/moarinterz">
+                        Interz
+                    </Hyperlink>
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    Logos and icon design
+                    </TextBlock>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16">
+                    <Hyperlink NavigateUri="https://streamlabs.com/lnterz/tip" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource About:Donate}" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold">
+                    <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/B0N3head">
                         B0N3head
                     </Hyperlink>
                     </TextBlock>
                     <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    FontSize="16"><Run Language="en-au" Text="Removed the"/></TextBlock>
-                    <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="16"><Run Language="en-au" Text="stupid drm"/></TextBlock>
-                    <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="16"><Run Language="en-au" Text="╰（‵□′）╯"/></TextBlock>
-
+                    FontSize="16">
+                    Le Cracker
+                    </TextBlock>
                 </StackPanel>
 
             </StackPanel>

@@ -24,7 +24,7 @@ namespace ModAssistant.Pages
     {
         public static Mods Instance = new Mods();
 
-        public List<string> DefaultMods = new List<string>() { "SongCore", "ScoreSaber", "BeatSaverDownloader", "BeatSaverVoting", "PlaylistManager", "ModelDownloader" };
+        public List<string> DefaultMods = new List<string> { "SongCore", "WhyIsThereNoLeaderboard", "BeatSaverDownloader", "BeatSaverVoting", "PlaylistManager" };
         public Mod[] ModsList;
         public Mod[] AllModsList;
         public static List<Mod> InstalledMods = new List<Mod>();
@@ -128,6 +128,36 @@ namespace ModAssistant.Pages
                 await Task.Run(async () => await PopulateModsList());
 
                 ModsListView.ItemsSource = ModList;
+
+                try
+                {
+                    var manualCategories = new string[] { "Core", "Leaderboards" };
+
+                    ModList.Sort((a, b) =>
+                    {
+                        foreach (var category in manualCategories)
+                        {
+                            if (a.Category == category && b.Category == category) return 0;
+                            if (a.Category == category) return -1;
+                            if (b.Category == category) return 1;
+                        }
+
+                        var categoryCompare = a.Category.CompareTo(b.Category);
+                        if (categoryCompare != 0) return categoryCompare;
+
+                        var aRequired = !a.IsEnabled;
+                        var bRequired = !b.IsEnabled;
+
+                        if (a.ModRequired && !b.ModRequired) return -1;
+                        if (b.ModRequired && !a.ModRequired) return 1;
+
+                        return a.ModName.CompareTo(b.ModName);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
 
                 view = (CollectionView)CollectionViewSource.GetDefaultView(ModsListView.ItemsSource);
                 PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
@@ -306,6 +336,7 @@ namespace ModAssistant.Pages
                     ModName = mod.name,
                     ModVersion = mod.version,
                     ModDescription = mod.description.Replace("\r\n", " ").Replace("\n", " "),
+                    ModRequired = mod.required,
                     ModInfo = mod,
                     Category = mod.category
                 };
@@ -603,6 +634,7 @@ namespace ModAssistant.Pages
             public string ModName { get; set; }
             public string ModVersion { get; set; }
             public string ModDescription { get; set; }
+            public bool ModRequired { get; set; }
             public bool PreviousState { get; set; }
 
             public bool IsEnabled { get; set; }
