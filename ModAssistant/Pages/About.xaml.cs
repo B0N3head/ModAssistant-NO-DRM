@@ -28,6 +28,24 @@ namespace ModAssistant.Pages
             e.Handled = true;
         }
 
+        private async void HeadpatsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatButton.IsEnabled = false;
+            var success = await Task.Run(async () => await HeadPat());
+
+            PatUp.IsOpen = success;
+            if (!success) PatButton.IsEnabled = true;
+        }
+
+        private async void HugsButton_Click(object sender, RoutedEventArgs e)
+        {
+            HugButton.IsEnabled = false;
+            var success = await Task.Run(async () => await Hug());
+
+            HugUp.IsOpen = success;
+            if (!success) HugButton.IsEnabled = true;
+        }
+
         private async Task<string> WeebCDN(string type)
         {
             var resp = await HttpClient.GetAsync(Utils.Constants.WeebCDNAPIURL + type + "/random");

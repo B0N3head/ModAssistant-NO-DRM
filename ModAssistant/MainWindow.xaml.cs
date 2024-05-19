@@ -112,59 +112,52 @@ namespace ModAssistant
 
         private async void LoadVersionsAsync()
         {
-            bool sucess = true;
-            for (int i = 0; i < 3; i++)
+            try
             {
-                try
+                var resp = await HttpClient.GetAsync(Utils.Constants.BeatModsVersions);
+                var body = await resp.Content.ReadAsStringAsync();
+                List<string> versions = JsonSerializer.Deserialize<string[]>(body).ToList();
+
+                resp = await HttpClient.GetAsync(Utils.Constants.BeatModsAlias);
+                body = await resp.Content.ReadAsStringAsync();
+                Dictionary<string, string[]> aliases = JsonSerializer.Deserialize<Dictionary<string, string[]>>(body);
+
+                string version = Utils.GetVersion();
+                if (!versions.Contains(version) && CheckAliases(versions, aliases, version) == string.Empty)
                 {
-                    var resp = await HttpClient.GetAsync(Utils.Constants.BeatModsVersions);
-                    var body = await resp.Content.ReadAsStringAsync();
-                    List<string> versions = JsonSerializer.Deserialize<string[]>(body).ToList();
+                    versions.Insert(0, version);
+                }
 
-                    resp = await HttpClient.GetAsync(Utils.Constants.BeatModsAlias);
-                    body = await resp.Content.ReadAsStringAsync();
-                    Dictionary<string, string[]> aliases = JsonSerializer.Deserialize<Dictionary<string, string[]>>(body);
 
-                    string version = Utils.GetVersion();
-                    if (!versions.Contains(version) && CheckAliases(versions, aliases, version) == string.Empty)
+                Dispatcher.Invoke(() =>
+                {
+                    GameVersion = GetGameVersion(version, versions, aliases);
+
+                    GameVersionsBox.ItemsSource = versions;
+                    GameVersionsBox.SelectedValue = GameVersion;
+
+                    if (!string.IsNullOrEmpty(GameVersionOverride))
                     {
-                        versions.Insert(0, version);
+                        GameVersionsBox.Visibility = Visibility.Collapsed;
+                        GameVersionsBoxOverride.Visibility = Visibility.Visible;
+                        GameVersionsBoxOverride.Text = GameVersionOverride;
+                        GameVersionsBoxOverride.IsEnabled = false;
                     }
 
-
-                    Dispatcher.Invoke(() =>
+                    if (!string.IsNullOrEmpty(GameVersion) && Properties.Settings.Default.Agreed)
                     {
-                        GameVersion = GetGameVersion(version, versions, aliases);
+                        Instance.ModsButton.IsEnabled = true;
+                    }
+                });
 
-                        GameVersionsBox.ItemsSource = versions;
-                        GameVersionsBox.SelectedValue = GameVersion;
-
-                        if (!string.IsNullOrEmpty(GameVersionOverride))
-                        {
-                            GameVersionsBox.Visibility = Visibility.Collapsed;
-                            GameVersionsBoxOverride.Visibility = Visibility.Visible;
-                            GameVersionsBoxOverride.Text = GameVersionOverride;
-                            GameVersionsBoxOverride.IsEnabled = false;
-                        }
-
-                        if (!string.IsNullOrEmpty(GameVersion) && Properties.Settings.Default.Agreed)
-                        {
-                            Instance.ModsButton.IsEnabled = true;
-                        }
-                    });
-
-                    VersionLoadStatus.SetResult(true);
-                    sucess = true;
-                    break;
-                }
-                catch {}
+                VersionLoadStatus.SetResult(true);
             }
-            if (!sucess)
+            catch (Exception e)
             {
                 Dispatcher.Invoke(() =>
                 {
                     GameVersionsBox.IsEnabled = false;
-                    MessageBox.Show($"{Application.Current.FindResource("MainWindow:GameVersionLoadFailed")}");
+                    MessageBox.Show($"{Application.Current.FindResource("MainWindow:GameVersionLoadFailed")}\n{e}");
                 });
 
                 VersionLoadStatus.SetResult(false);
@@ -323,6 +316,21 @@ namespace ModAssistant
                 await ShowModsPage();
 
                 Main.Content = prevPage;
+            }
+        }
+
+        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (About.Instance.PatUp.IsOpen)
+            {
+                About.Instance.PatUp.IsOpen = false;
+                About.Instance.PatButton.IsEnabled = true;
+            }
+
+            if (About.Instance.HugUp.IsOpen)
+            {
+                About.Instance.HugUp.IsOpen = false;
+                About.Instance.HugButton.IsEnabled = true;
             }
         }
 
