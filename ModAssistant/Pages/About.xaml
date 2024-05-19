@@ -40,36 +40,19 @@
             Grid.Row="1"
             Margin="0,5"
             FontSize="16"
-            Text="{DynamicResource About:List:Header}"
+            Text="I'm Bonehead and I spend time to modify Mod Assistant, why?"
             TextWrapping="Wrap" />
             <TextBlock
             Grid.Row="2"
             Margin="15,5"
             FontSize="16">
             •
-            <TextBlock Text="{DynamicResource About:List:Item1}" />
-        </TextBlock>
-            <TextBlock
-            Grid.Row="3"
-            Margin="15,5"
-            FontSize="16">
-            •
-            <TextBlock Text="{DynamicResource About:List:Item2}" />
-        </TextBlock>
-            <TextBlock
-            Grid.Row="4"
-            Margin="15,5"
-            FontSize="16">
-            •
-            <TextBlock Text="{DynamicResource About:List:Item3}" />
+            <TextBlock Text="Complete freedom of use" />
         </TextBlock>
             <TextBlock
             Grid.Row="5"
             Margin="15,5"
-            FontSize="16">
-            •
-            <TextBlock Text="{DynamicResource About:List:Item4}" />
-        </TextBlock>
+            FontSize="16"><Run Text=" "/><InlineUIContainer/></TextBlock>
 
             <TextBlock
             Grid.Row="6"
@@ -83,7 +66,7 @@
             Grid.Row="7"
             Margin="0,10,5,5"
             FontSize="20"
-            Text="{DynamicResource About:SpecialThanks}" />
+            Text="Special Thanks" />
 
             <StackPanel
             Grid.Row="8"

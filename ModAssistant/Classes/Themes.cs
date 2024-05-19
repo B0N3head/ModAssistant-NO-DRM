@@ -115,12 +115,6 @@ namespace ModAssistant
         /// <param name="savedTheme">Theme name retrieved from the settings file.</param>
         public static void FirstLoad(string savedTheme)
         {
-            if (!Properties.Settings.Default.AppliedAnniversaryTheme && DateTime.Now.Date.ToString("MM/yyyy") == "05/2023")
-            {
-                Properties.Settings.Default.AppliedAnniversaryTheme = true;
-                ApplyTheme("Anniversary", false);
-                return;
-            }
             if (string.IsNullOrEmpty(savedTheme))
             {
                 try
