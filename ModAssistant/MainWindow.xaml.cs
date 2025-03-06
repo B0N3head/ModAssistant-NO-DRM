@@ -51,6 +51,17 @@ namespace ModAssistant
 
             VersionText.Text = App.Version;
 
+            if (Utils.IsVoid())
+            {
+                Main.Content = Invalid.Instance;
+                Instance.ModsButton.IsEnabled = false;
+                Instance.OptionsButton.IsEnabled = false;
+                Instance.IntroButton.IsEnabled = false;
+                Instance.AboutButton.IsEnabled = false;
+                Instance.GameVersionsBox.IsEnabled = false;
+                return;
+            }
+
             Themes.LoadThemes();
             Themes.FirstLoad(Properties.Settings.Default.SelectedTheme);
 
@@ -103,15 +114,10 @@ namespace ModAssistant
         {
             try
             {
-                var resp = await HttpClient.GetAsync(Utils.Constants.BeatModsVersions);
-                var body = await resp.Content.ReadAsStringAsync();
-                List<string> versions = JsonSerializer.Deserialize<string[]>(body).ToList();
+                var versions = await Utils.GetVersionsList();
+                var aliases = await Utils.GetAliasDictionary();
 
-                resp = await HttpClient.GetAsync(Utils.Constants.BeatModsAlias);
-                body = await resp.Content.ReadAsStringAsync();
-                Dictionary<string, string[]> aliases = JsonSerializer.Deserialize<Dictionary<string, string[]>>(body);
-
-                string version = Utils.GetVersion();
+                string version = await Utils.GetVersion();
                 if (!versions.Contains(version) && CheckAliases(versions, aliases, version) == string.Empty)
                 {
                     versions.Insert(0, version);

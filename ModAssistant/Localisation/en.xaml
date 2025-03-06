@@ -14,7 +14,7 @@
     <sys:String x:Key="App:Exception">Exception</sys:String>
 
     <!-- Main Window -->
-    <sys:String x:Key="MainWindow:WindowTitle">Mod Assistant Fixed</sys:String>
+    <sys:String x:Key="MainWindow:WindowTitle">Mod Assistant</sys:String>
     <sys:String x:Key="MainWindow:IntroButton">Intro</sys:String>
     <sys:String x:Key="MainWindow:ModsButton">Mods</sys:String>
     <sys:String x:Key="MainWindow:AboutButton">About</sys:String>
@@ -116,11 +116,11 @@
     <sys:String x:Key="About:List:Item3">Single Executable</sys:String>
     <sys:String x:Key="About:List:Item4">Responsible use</sys:String>
     <Span x:Key="About:SupportAssistant">
-        If you enjoy this program and would like to support the creator who blocks "invalid" installs, please visit their
+        If you enjoy this program and would like to support me, please visit my
         <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://bs.assistant.moe/Donate/">
             donation page
         </Hyperlink>
-        or the official
+        or the 
         <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.patreon.com/beatsabermods">
             BSMG Patreon
         </Hyperlink>
@@ -234,7 +234,7 @@
     <sys:String x:Key="OneClick:Failed">Download failed: {0}</sys:String>
     <sys:String x:Key="OneClick:DoneNotify">OneClick™ installation finished</sys:String>
     <sys:String x:Key="OneClick:StartDownloadPlaylist">Starting to download playlist</sys:String>
-    <sys:String x:Key="OneClick:Done">Done</sys:String>
+    <sys:String x:Key="OneClick:Done">Done'd</sys:String>
 
     <!-- Themes Class -->
     <sys:String x:Key="Themes:ThemeNotFound">Theme not found, reverting to default theme...</sys:String>
